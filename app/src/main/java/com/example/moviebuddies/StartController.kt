@@ -41,8 +41,6 @@ class StartController( SA: StartActivity) {
 
             }
 
-
-
         })
     }
 
@@ -56,7 +54,7 @@ class StartController( SA: StartActivity) {
         json.put("u_name", name)
         json.put("id", id)
         socket.send("gen_room", json)
-        
+
     }
 
     fun join(name: String, id: String){

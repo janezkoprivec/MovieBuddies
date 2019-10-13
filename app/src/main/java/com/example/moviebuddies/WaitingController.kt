@@ -14,12 +14,20 @@ class WaitingController(WA: WaitingActivity) {
         WA.runOnUiThread(Runnable {
             val data = args[0] as JSONObject
             val command = data.getString("command")
-            Log.e("jsonArr", data.toString())
+            Log.e("command", data.toString())
             when(command){
                 "get_users" -> {
-                    //val users = data.getJSONArray("users")
-                    //Log.e("jsonArr", users.toString())
-                    var list = mutableListOf("name1", "name2", "name3")
+                    val usersJSON = data.getJSONArray("users")
+                    val list = List(usersJSON.length()){
+                        usersJSON.getString(it)
+                    }
+                    WA.populateLV(list)
+                }
+                "refresh_users" -> {
+                    val usersJSON = data.getJSONArray("users")
+                    val list = List(usersJSON.length()){
+                        usersJSON.getString(it)
+                    }
                     WA.populateLV(list)
                 }
 
